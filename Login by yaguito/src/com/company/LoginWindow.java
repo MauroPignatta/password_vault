@@ -1,0 +1,139 @@
+package com.company;
+
+import com.company.factory.ImageFactory;
+import com.company.util.FrameDragListener;
+
+import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
+import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+
+public class LoginWindow extends JFrame {
+
+    private final static String TITLE = "Password Vault";
+    private final static int WIDTH = 300;
+    private final static int HEIGHT = 300;
+    private final static int BORDER_THICKNESS = 5;
+
+
+    private ImageIcon icon = ImageFactory.createImageIcon("res/logo.png");
+
+    private JLabel labelIcon = new JLabel("logo");
+    private JPanel panel = new JPanel();
+    private JTextField userTextField = new JTextField("User");
+    private JTextField passwordTextField = new JPasswordField("Password");
+    private JButton loginButton = new JButton();
+    private JButton closeButton = new JButton();
+
+    public LoginWindow() {
+        setTitle(TITLE);
+        setSize(WIDTH, HEIGHT);
+        setLocationRelativeTo(null);
+        setUndecorated(true); //removes title bar
+        makeDraggable();
+        editElements();
+        addElements();
+        addListeners();
+        setVisible(true);
+        login();
+    }
+
+    private void makeDraggable() {
+        FrameDragListener frameDragListener = new FrameDragListener(this);
+        addMouseListener(frameDragListener);
+        addMouseMotionListener(frameDragListener);
+    }
+
+    private void editElements(){
+        editPanel();
+
+        userTextField.setBounds((WIDTH/2)-50-BORDER_THICKNESS,150,100,25);
+        editTextField(userTextField);
+
+        passwordTextField.setBounds((WIDTH/2)-50-BORDER_THICKNESS,176,100,25);
+        editTextField(passwordTextField);
+
+        loginButton.setBounds((WIDTH/2)-50-BORDER_THICKNESS,205,100,25);
+        editButton(loginButton, null,"res/loginButton.png");
+
+        closeButton.setBounds(WIDTH-(20+BORDER_THICKNESS), 5,20,20);
+        editButton(closeButton, null,"res/close.png");
+
+        labelIcon.setIcon(icon);
+        labelIcon.setBounds((WIDTH/2)-50-BORDER_THICKNESS,50,100,76);
+    }
+
+    private void editButton(JButton button, Border border, String imagePath){
+        button.setBorder(border);
+        button.setIcon(ImageFactory.createImageIcon(imagePath));
+    }
+
+    private void editPanel(){
+        int r=0;
+        int g=0;
+        int b=0;
+        float a=0.3f;
+        setBackground(new Color(r,g,b,a));
+        panel.setBackground(new Color(r,g,b,a));
+        panel.setLayout(null);
+        panel.setBorder(new LineBorder(Color.BLACK, BORDER_THICKNESS));
+    }
+
+    private void editTextField(JTextField jTextField){
+        jTextField.setBackground(new Color(36,36,36));
+        jTextField.setBorder(new LineBorder(Color.BLACK));
+        jTextField.setSelectionColor(Color.WHITE);
+        jTextField.setSelectedTextColor(Color.BLACK);
+        jTextField.setCaretColor(Color.WHITE); //cursor
+        jTextField.setForeground(Color.WHITE); //font color
+    }
+
+    private void addElements(){
+        add(panel);
+        panel.add(userTextField);
+        panel.add(passwordTextField);
+        panel.add(loginButton);
+        panel.add(closeButton);
+        panel.add(labelIcon);
+    }
+
+    private void addListeners(){
+        closeButton.addActionListener(e -> dispose());
+
+        closeButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                editButton(closeButton,null,"res/closeHover.png");
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                editButton(closeButton,null,"res/close.png");
+            }
+        });
+
+        loginButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                editButton(loginButton,null,"res/loginButtonHover.png");
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                editButton(loginButton,null,"res/loginButton.png");
+            }
+        });
+    }
+
+    public void login(){
+        loginButton.addActionListener(e -> {
+
+            if(LoginValidator.validate()){
+                System.out.println(userTextField.getText() + passwordTextField.getText());
+            }
+        });
+    }
+}
