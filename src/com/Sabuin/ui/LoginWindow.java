@@ -26,6 +26,7 @@ public class LoginWindow extends JFrame {
     private JTextField userTextField = new JTextField("User");
     private JTextField passwordTextField = new JPasswordField("Password");
     private JButton loginButton = new JButton();
+    private JButton registerButton = new JButton();
     private JButton closeButton = new JButton();
 
     public LoginWindow() {
@@ -38,7 +39,6 @@ public class LoginWindow extends JFrame {
         addElements();
         addListeners();
         setVisible(true);
-        login();
     }
 
     private void makeDraggable() {
@@ -49,21 +49,23 @@ public class LoginWindow extends JFrame {
 
     private void editElements(){
         editPanel();
+        labelIcon.setIcon(icon);
+        labelIcon.setBounds((WIDTH/2)-50-BORDER_THICKNESS,30,100,76);
 
-        userTextField.setBounds((WIDTH/2)-50-BORDER_THICKNESS,150,100,25);
+        userTextField.setBounds((WIDTH/2)-50-BORDER_THICKNESS,130,100,25);
         editTextField(userTextField);
 
-        passwordTextField.setBounds((WIDTH/2)-50-BORDER_THICKNESS,176,100,25);
+        passwordTextField.setBounds((WIDTH/2)-50-BORDER_THICKNESS,156,100,25);
         editTextField(passwordTextField);
 
-        loginButton.setBounds((WIDTH/2)-50-BORDER_THICKNESS,205,100,25);
+        loginButton.setBounds((WIDTH/2)-50-BORDER_THICKNESS,185,100,25);
         editButton(loginButton, null,"/loginButton.png");
 
-        closeButton.setBounds(WIDTH-(20+BORDER_THICKNESS), 5,20,20);
-        editButton(closeButton, null,"/close.png");
+        registerButton.setBounds((WIDTH/2)-50-BORDER_THICKNESS,211,100,25);
+        editButton(registerButton, null,"/registerButton.png");
 
-        labelIcon.setIcon(icon);
-        labelIcon.setBounds((WIDTH/2)-50-BORDER_THICKNESS,50,100,76);
+        closeButton.setBounds((WIDTH/2)-50-BORDER_THICKNESS,237,100,25);
+        editButton(closeButton, null,"/closeButton.png");
     }
 
     private void editButton(JButton button, Border border, String imagePath){
@@ -98,41 +100,30 @@ public class LoginWindow extends JFrame {
         panel.add(loginButton);
         panel.add(closeButton);
         panel.add(labelIcon);
+        panel.add(registerButton);
     }
 
     private void addListeners(){
         closeButton.addActionListener(e -> dispose());
-
-        closeButton.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                editButton(closeButton,null,"/closeHover.png");
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-                editButton(closeButton,null,"/close.png");
-            }
-        });
-
-        loginButton.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                editButton(loginButton,null,"/loginButtonHover.png");
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-                editButton(loginButton,null,"/loginButton.png");
-            }
-        });
-    }
-
-    public void login(){
         loginButton.addActionListener(e -> {
-
             if(LoginValidator.validate()){
                 System.out.println(userTextField.getText() + passwordTextField.getText());
+            }
+        });
+        addMouseListener(loginButton, "/loginButtonHover.png", "/loginButton.png");
+        addMouseListener(registerButton, "/registerButtonHover.png", "/registerButton.png");
+        addMouseListener(closeButton, "/closeButtonHover.png", "/closeButton.png");
+    }
+
+    private void addMouseListener(JButton button, String hoverImage, String image){
+        button.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                editButton(button, null, hoverImage);
+            }
+            @Override
+            public void mouseExited(MouseEvent e) {
+                editButton(button, null, image);
             }
         });
     }
