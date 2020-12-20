@@ -4,9 +4,7 @@ import com.Sabuin.helper.ImageHelper;
 import com.Sabuin.util.FrameDragListener;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -55,40 +53,28 @@ public class LoginWindow extends JFrame {
         labelIcon.setBounds((WIDTH/2)-50-BORDER_THICKNESS,30,100,76);
 
         userTextField.setBounds((WIDTH/2)-50-BORDER_THICKNESS,130,100,25);
-        editTextField(userTextField);
+        UIComponentManager.edit(userTextField);
 
         passwordTextField.setBounds((WIDTH/2)-50-BORDER_THICKNESS,156,100,25);
-        editTextField(passwordTextField);
+        UIComponentManager.edit(passwordTextField);
 
         loginButton.setBounds((WIDTH/2)-50-BORDER_THICKNESS,185,100,25);
-        editButton(loginButton, null,"/loginButton.png");
+        UIComponentManager.edit(loginButton, null,"/loginButton.png");
 
         registerButton.setBounds((WIDTH/2)-50-BORDER_THICKNESS,211,100,25);
-        editButton(registerButton, null,"/registerButton.png");
+        UIComponentManager.edit(registerButton, null,"/registerButton.png");
 
         closeButton.setBounds((WIDTH/2)-50-BORDER_THICKNESS,237,100,25);
-        editButton(closeButton, null,"/closeButton.png");
+        UIComponentManager.edit(closeButton, null,"/closeButton.png");
     }
 
-    private void editButton(JButton button, Border border, String imagePath){
-        button.setBorder(border);
-        button.setIcon(ImageHelper.openImageAsIcon(imagePath));
-    }
+
 
     private void editPanel(){
-        setBackground(UIColor.BACKGROUND_COLOR);
-        panel.setBackground(UIColor.BACKGROUND_COLOR);
+        setBackground(UIColor.PANEL_BACKGROUND);
+        panel.setBackground(UIColor.PANEL_BACKGROUND);
         panel.setLayout(null);
-        panel.setBorder(new LineBorder(Color.BLACK, BORDER_THICKNESS));
-    }
-
-    private void editTextField(JTextField jTextField){
-        jTextField.setBackground(UIColor.TEXT_FIELD_COLOR);
-        jTextField.setBorder(new LineBorder(Color.BLACK));
-        jTextField.setSelectionColor(Color.WHITE);
-        jTextField.setSelectedTextColor(Color.BLACK);
-        jTextField.setCaretColor(Color.WHITE); //cursor
-        jTextField.setForeground(Color.WHITE); //font color
+        panel.setBorder(new LineBorder(UIColor.PANEL_BACKGROUND_BORDER_B, BORDER_THICKNESS));
     }
 
     private void addElements(){
@@ -117,21 +103,9 @@ public class LoginWindow extends JFrame {
             }
         });
 
-        addMouseListener(loginButton, "/loginButtonHover.png", "/loginButton.png");
-        addMouseListener(registerButton, "/registerButtonHover.png", "/registerButton.png");
-        addMouseListener(closeButton, "/closeButtonHover.png", "/closeButton.png");
+        UIComponentManager.addMouseListener(loginButton,null, "/loginButtonHover.png", "/loginButton.png");
+        UIComponentManager.addMouseListener(registerButton,null,"/registerButtonHover.png", "/registerButton.png");
+        UIComponentManager.addMouseListener(closeButton,null,"/closeButtonHover.png", "/closeButton.png");
     }
 
-    private void addMouseListener(JButton button, String hoverImage, String image){
-        button.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                editButton(button, null, hoverImage);
-            }
-            @Override
-            public void mouseExited(MouseEvent e) {
-                editButton(button, null, image);
-            }
-        });
-    }
 }
