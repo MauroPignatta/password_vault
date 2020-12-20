@@ -7,6 +7,8 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -74,18 +76,14 @@ public class LoginWindow extends JFrame {
     }
 
     private void editPanel(){
-        int r=0;
-        int g=0;
-        int b=0;
-        float a=0.3f;
-        setBackground(new Color(r,g,b,a));
-        panel.setBackground(new Color(r,g,b,a));
+        setBackground(UIColor.BACKGROUND_COLOR);
+        panel.setBackground(UIColor.BACKGROUND_COLOR);
         panel.setLayout(null);
         panel.setBorder(new LineBorder(Color.BLACK, BORDER_THICKNESS));
     }
 
     private void editTextField(JTextField jTextField){
-        jTextField.setBackground(new Color(36,36,36));
+        jTextField.setBackground(UIColor.TEXT_FIELD_COLOR);
         jTextField.setBorder(new LineBorder(Color.BLACK));
         jTextField.setSelectionColor(Color.WHITE);
         jTextField.setSelectedTextColor(Color.BLACK);
@@ -104,12 +102,21 @@ public class LoginWindow extends JFrame {
     }
 
     private void addListeners(){
-        closeButton.addActionListener(e -> dispose());
+        closeButton.addActionListener(e -> System.exit(0));
+
         loginButton.addActionListener(e -> {
             if(LoginValidator.validate()){
                 System.out.println(userTextField.getText() + passwordTextField.getText());
             }
         });
+
+        registerButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                RegisterDialog registerDialog = new RegisterDialog();
+            }
+        });
+
         addMouseListener(loginButton, "/loginButtonHover.png", "/loginButton.png");
         addMouseListener(registerButton, "/registerButtonHover.png", "/registerButton.png");
         addMouseListener(closeButton, "/closeButtonHover.png", "/closeButton.png");
