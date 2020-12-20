@@ -1,11 +1,9 @@
 package com.Sabuin.manager;
 
-import com.Sabuin.config.Config;
 import com.Sabuin.entity.Account;
 import com.Sabuin.factory.AccountFactory;
+import com.Sabuin.file.BinaryFile;
 
-import java.io.*;
-import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,7 +13,7 @@ public class AccountManager {
 
     private Map<String, String> accounts;
 
-    private File accountFile;
+    private BinaryFile accountFile;
     private AccountFactory factory;
 
     public AccountManager(AccountFactory factory) {
@@ -27,38 +25,17 @@ public class AccountManager {
     }
 
     private void openAccountFile() {
-        accountFile = new File(Config.getConfig().getHomePath() + "/" + filename);
-
-        try {
-            accountFile.createNewFile();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        accountFile = new BinaryFile(filename);
     }
 
     private void loadAccounts() {
-        try {
-            FileInputStream fileInputStream = new FileInputStream(accountFile);
+        String[] stringAccounts = accountFile.toString().split(",");
 
-            byte[] bytes = new byte[4096];
-            StringBuilder builder = new StringBuilder();
-
-            while(fileInputStream.read(bytes) > 0){
-                builder.append(new String(bytes));
+        for(String account : stringAccounts){
+            if(!account.equals("")){
+                Account currentAccount = factory.createAccount(account);
+                accounts.put(currentAccount.getUsername(), currentAccount.getPassword());
             }
-
-            String[] stringAccounts = builder.toString().split(",");
-
-            for(String account : stringAccounts){
-                if(!account.equals("")){
-                    Account currentAccount = factory.createAccount(account);
-                    accounts.put(currentAccount.getUsername(), currentAccount.getPassword());
-                }
-            }
-
-            fileInputStream.close();
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 
@@ -76,30 +53,19 @@ public class AccountManager {
     }
 
     private boolean save() {
-        boolean saved = false;
 
         if(accountFile == null)
             return false;
 
-        try {
-            FileOutputStream fileOutputStream = new FileOutputStream(accountFile);
-            StringBuilder builder = new StringBuilder();
-            int size = accounts.size() - 1;
+        StringBuilder builder = new StringBuilder();
+        int size = accounts.size() - 1;
 
-            for(Map.Entry<String, String> entry : accounts.entrySet()){
-                String separator = size-- > 0 ? "," : "";
-                builder.append(factory.createAccount(entry.getKey(), entry.getValue())).append(separator);
-            }
-
-            fileOutputStream.write(builder.toString().getBytes(StandardCharsets.UTF_8));
-            saved = true;
-
-            fileOutputStream.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+        for(Map.Entry<String, String> entry : accounts.entrySet()){
+            String separator = size-- > 0 ? "," : "";
+            builder.append(factory.createAccount(entry.getKey(), entry.getValue())).append(separator);
         }
 
-        return saved;
+        return accountFile.write(builder.toString());
     }
 
 }
