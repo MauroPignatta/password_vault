@@ -75,12 +75,7 @@ public class RegisterDialog extends JDialog {
 
     private void addListeners() {
         backButton.addActionListener(e -> dispose());
-        registerButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("Register");
-            }
-        });
+        registerButton.addActionListener(e -> System.out.println("Register"));
         UIComponentManager.addMouseListener(registerButton, new LineBorder(UIColor.PANEL_BACKGROUND_BORDER), "/registerButtonHover.png","/registerButton.png");
         UIComponentManager.addMouseListener(backButton, new LineBorder(UIColor.PANEL_BACKGROUND_BORDER), "/backButtonHover.png","/backButton.png");
     }

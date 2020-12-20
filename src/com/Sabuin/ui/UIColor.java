@@ -15,4 +15,5 @@ public class UIColor {
     public static Color TEXT_FIELD_CARET = Color.WHITE; //cursor
     public static Color TEXT_FIELD_FOREGROUND = Color.WHITE; //font color
 
+
 }

@@ -5,6 +5,7 @@ import com.Sabuin.util.FrameDragListener;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -28,6 +29,7 @@ public class LoginWindow extends JFrame {
     private JButton loginButton = new JButton();
     private JButton registerButton = new JButton();
     private JButton closeButton = new JButton();
+
 
     public LoginWindow() {
         setTitle(TITLE);
@@ -96,11 +98,8 @@ public class LoginWindow extends JFrame {
             }
         });
 
-        registerButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                RegisterDialog registerDialog = new RegisterDialog();
-            }
+        registerButton.addActionListener(e -> {
+            RegisterDialog registerDialog = new RegisterDialog();
         });
 
         UIComponentManager.addMouseListener(loginButton,null, "/loginButtonHover.png", "/loginButton.png");
