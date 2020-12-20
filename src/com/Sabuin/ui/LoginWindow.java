@@ -5,11 +5,6 @@ import com.Sabuin.util.FrameDragListener;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 
 public class LoginWindow extends JFrame {
@@ -19,8 +14,7 @@ public class LoginWindow extends JFrame {
     private final static int HEIGHT = 300;
     private final static int BORDER_THICKNESS = 5;
 
-
-    private ImageIcon icon = ImageHelper.openImageAsIcon("/logo.png");
+    private ImageIcon icon = UIAssets.LOGO_IMG;
 
     private JLabel labelIcon = new JLabel("logo");
     private JPanel panel = new JPanel();
@@ -61,22 +55,20 @@ public class LoginWindow extends JFrame {
         UIComponentManager.edit(passwordTextField);
 
         loginButton.setBounds((WIDTH/2)-50-BORDER_THICKNESS,185,100,25);
-        UIComponentManager.edit(loginButton, null,"/loginButton.png");
+        UIComponentManager.edit(loginButton, null, UIAssets.LOGIN_BUTTON_IMG);
 
         registerButton.setBounds((WIDTH/2)-50-BORDER_THICKNESS,211,100,25);
-        UIComponentManager.edit(registerButton, null,"/registerButton.png");
+        UIComponentManager.edit(registerButton, null, UIAssets.REGISTER_BUTTON_IMG);
 
         closeButton.setBounds((WIDTH/2)-50-BORDER_THICKNESS,237,100,25);
-        UIComponentManager.edit(closeButton, null,"/closeButton.png");
+        UIComponentManager.edit(closeButton, null,UIAssets.CLOSE_BUTTON_IMG);
     }
 
-
-
     private void editPanel(){
-        setBackground(UIColor.PANEL_BACKGROUND);
-        panel.setBackground(UIColor.PANEL_BACKGROUND);
+        setBackground(UIAssets.PANEL_BACKGROUND);
+        panel.setBackground(UIAssets.PANEL_BACKGROUND);
         panel.setLayout(null);
-        panel.setBorder(new LineBorder(UIColor.PANEL_BACKGROUND_BORDER_B, BORDER_THICKNESS));
+        panel.setBorder(new LineBorder(UIAssets.PANEL_BACKGROUND_BORDER_B, BORDER_THICKNESS));
     }
 
     private void addElements(){
@@ -102,9 +94,9 @@ public class LoginWindow extends JFrame {
             RegisterDialog registerDialog = new RegisterDialog();
         });
 
-        UIComponentManager.addMouseListener(loginButton,null, "/loginButtonHover.png", "/loginButton.png");
-        UIComponentManager.addMouseListener(registerButton,null,"/registerButtonHover.png", "/registerButton.png");
-        UIComponentManager.addMouseListener(closeButton,null,"/closeButtonHover.png", "/closeButton.png");
+        UIComponentManager.addMouseListener(loginButton,null, UIAssets.LOGIN_HOVER_BUTTON_IMG, UIAssets.LOGIN_BUTTON_IMG);
+        UIComponentManager.addMouseListener(registerButton,null,UIAssets.REGISTER_HOVER_BUTTON_IMG, UIAssets.REGISTER_BUTTON_IMG);
+        UIComponentManager.addMouseListener(closeButton,null,UIAssets.CLOSE_HOVER_BUTTON_IMG, UIAssets.CLOSE_BUTTON_IMG);
     }
 
 }
