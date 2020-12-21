@@ -1,13 +1,13 @@
 package com.Sabuin.ui;
 
+import com.Sabuin.enums.Theme;
 import com.Sabuin.helper.ImageHelper;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-import javax.swing.plaf.ListUI;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class ThemeDialog extends JDialog {
     private final static int WIDTH = 300;
@@ -18,12 +18,11 @@ public class ThemeDialog extends JDialog {
 
     private JLabel labelIcon = new JLabel("logo");
     private JPanel panel = new JPanel();
+    private JButton okButton = new JButton("OK");
 
-    String [] themes ={"Dark Red", "Light Red", "Dark Red", "Light Red","Dark Red", "Light Red",
-            "Dark Red", "Light Red","Dark Red", "Light Red", "Dark Red", "Light Red"};
-    JList<String> jList = new JList<>(themes);
+    Theme [] themes ={Theme.DARK_RED, Theme.LIGHT_RED};
+    JList<Theme> jList = new JList<>(themes);
 
-    JLabel selectedTheme = new JLabel();
 
     public ThemeDialog() {
         setTitle("Register Dialog");
@@ -38,30 +37,32 @@ public class ThemeDialog extends JDialog {
 
     private void editElements(){
         editPanel();
+
         labelIcon.setIcon(icon);
         labelIcon.setBounds((WIDTH/2)-50-BORDER_THICKNESS,30,100,76);
 
         editJList();
 
-        selectedTheme.setBounds((WIDTH/2)-35-BORDER_THICKNESS, HEIGHT-BORDER_THICKNESS-40, 70, 30);
-        selectedTheme.setBackground(Color.RED);
-        selectedTheme.setBorder(new LineBorder(Color.RED));
-        selectedTheme.setForeground(Color.RED);
-
-
+        okButton.setBounds((WIDTH/2)-20-BORDER_THICKNESS, HEIGHT-40-BORDER_THICKNESS, 40,30);
+        okButton.setBackground(UIAssets.TEXT_FIELD_BACKGROUND);
+        okButton.setBorder(new LineBorder(UIAssets.PANEL_BACKGROUND_BORDER));
+        okButton.setForeground(UIAssets.TEXT_FIELD_FOREGROUND);
 
     }
 
     private void editJList() {
-        jList.setBounds(BORDER_THICKNESS, 130, WIDTH-BORDER_THICKNESS*2,80);
         jList.setVisibleRowCount(4);
         jList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         jList.setLayoutOrientation(JList.HORIZONTAL_WRAP);
+
+        jList.setBounds(BORDER_THICKNESS*4, 130, WIDTH-BORDER_THICKNESS*8,80);
         jList.setSelectionForeground(Color.YELLOW);
         jList.setSelectionBackground(Color.GREEN);
-        jList.setBackground(Color.BLUE);
-        jList.setForeground(Color.RED);
+        jList.setBorder(new LineBorder(UIAssets.PANEL_BACKGROUND_BORDER));
+        jList.setBackground(UIAssets.PANEL_BACKGROUND_NO_TRANSPARENCY);
+        jList.setForeground(UIAssets.PANEL_BACKGROUND_BORDER);
     }
+
 
     private void editPanel(){
         setBackground(UIAssets.PANEL_BACKGROUND);
@@ -74,11 +75,18 @@ public class ThemeDialog extends JDialog {
         add(panel);
         panel.add(labelIcon);
         panel.add(jList);
-        panel.add(selectedTheme);
+        panel.add(okButton);
     }
 
     private void addListeners() {
-        jList.addListSelectionListener(e -> selectedTheme.setText(jList.getSelectedValue()));
-
+        jList.addListSelectionListener(e -> {
+            UIAssets.init(jList.getSelectedValue());
+            this.dispose();
+            ThemeDialog themeDialog = new ThemeDialog();
+        });
+        okButton.addActionListener(e -> {
+            this.dispose();
+            LoginWindow loginWindow = new LoginWindow();
+        });
     }
 }

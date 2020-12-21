@@ -68,7 +68,7 @@ public class LoginWindow extends JFrame {
         setBackground(UIAssets.PANEL_BACKGROUND);
         panel.setBackground(UIAssets.PANEL_BACKGROUND);
         panel.setLayout(null);
-        panel.setBorder(new LineBorder(UIAssets.PANEL_BACKGROUND_BORDER_B, BORDER_THICKNESS));
+        panel.setBorder(new LineBorder(UIAssets.PANEL_BACKGROUND_BORDER, BORDER_THICKNESS));
     }
 
     private void addElements(){

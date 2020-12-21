@@ -10,7 +10,6 @@ public class UIAssets {
 
     public static Color PANEL_BACKGROUND;
     public static Color PANEL_BACKGROUND_NO_TRANSPARENCY;
-    public static Color PANEL_BACKGROUND_BORDER_B;
     public static Color PANEL_BACKGROUND_BORDER;
     public static Color TEXT_FIELD_BACKGROUND;
     public static Color TEXT_FIELD_BORDER;
@@ -34,7 +33,6 @@ public class UIAssets {
             case DARK_RED:
                 PANEL_BACKGROUND = new Color(0,0,0,0.7f);
                 PANEL_BACKGROUND_NO_TRANSPARENCY = new Color(0,0,0);
-                PANEL_BACKGROUND_BORDER_B = Color.BLACK;
                 PANEL_BACKGROUND_BORDER = new Color(255,25,25, 100);
                 TEXT_FIELD_BACKGROUND = new Color(36,36,36);
                 TEXT_FIELD_BORDER = Color.BLACK;
@@ -56,7 +54,6 @@ public class UIAssets {
             case LIGHT_RED:
                 PANEL_BACKGROUND = new Color(255,255,255,100);
                 PANEL_BACKGROUND_NO_TRANSPARENCY = new Color(255,255,255);
-                PANEL_BACKGROUND_BORDER_B = Color.WHITE;
                 PANEL_BACKGROUND_BORDER = new Color(255,25,25, 100);
                 TEXT_FIELD_BACKGROUND = new Color(244,244,244);
                 TEXT_FIELD_BORDER = Color.WHITE;
