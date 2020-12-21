@@ -11,5 +11,4 @@ public class Main {
         ThemeDialog themeDialog = new ThemeDialog();
     }
 
-
 }

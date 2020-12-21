@@ -9,6 +9,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class UIComponentManager {
+
     public static void edit(JTextField jTextField){
         jTextField.setBackground(UIAssets.TEXT_FIELD_BACKGROUND);
         jTextField.setBorder(new LineBorder(UIAssets.TEXT_FIELD_BORDER));

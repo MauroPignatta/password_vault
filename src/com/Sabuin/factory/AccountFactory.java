@@ -1,5 +1,6 @@
 package com.Sabuin.factory;
 
+import com.Sabuin.config.Config;
 import com.Sabuin.entity.Account;
 
 public class AccountFactory {
@@ -12,13 +13,8 @@ public class AccountFactory {
         return account;
     }
 
-    public Account createAccount(String stringAccount){
-        Account account = new Account();
-        String[] parsedAccount = stringAccount.split(";");
-        account.setUsername(parsedAccount[0]);
-        account.setPassword(parsedAccount[1]);
-
-        return account;
+    public Account createAccount(String json){
+        return Config.getConfig().getGson().fromJson(json, Account.class);
     }
 
 
