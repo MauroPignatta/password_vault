@@ -30,6 +30,9 @@ public class AccountManager {
 
     private void loadAccounts() {
         String json = accountFile.toString().replaceAll("[{}\"]", "");
+        if(json.isEmpty()){
+            return;
+        }
         String[] accountStrings = json.split(",");
         for(String s : accountStrings){
             String[] parsedString = s.split(":");

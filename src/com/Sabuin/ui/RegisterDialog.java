@@ -1,6 +1,9 @@
 package com.Sabuin.ui;
 
 import com.Sabuin.helper.ImageHelper;
+import com.Sabuin.manager.AccountManager;
+import com.Sabuin.validator.AccountValidator;
+import sun.rmi.runtime.Log;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -21,8 +24,12 @@ public class RegisterDialog extends JDialog {
     private JButton registerButton = new JButton();
     private JButton backButton = new JButton();
 
+    AccountManager accountManager;
+    LoginWindow parent;
 
-    public RegisterDialog() {
+    public RegisterDialog(LoginWindow parent) {
+        this.parent = parent;
+        accountManager = parent.getAccountManager();
         setTitle("Register Dialog");
         setSize(WIDTH, HEIGHT);
         setLocationRelativeTo(null);
@@ -72,8 +79,27 @@ public class RegisterDialog extends JDialog {
     }
 
     private void addListeners() {
-        backButton.addActionListener(e -> dispose());
-        registerButton.addActionListener(e -> System.out.println("Register"));
+        backButton.addActionListener(e -> {
+            parent.setVisible(true);
+            dispose();
+        });
+
+        AccountValidator accountValidator = new AccountValidator();
+        registerButton.addActionListener(e -> {
+            String username = userTextField.getText();
+            String password1 = passwordTextField1.getText();
+            String password2 = passwordTextField1.getText();
+            if(password1.equals(password2)){
+                if(accountValidator.validateUsername(username) && accountValidator.validatePassword(password1)){
+                    accountManager.createAccount(username, password1);
+                }else{
+                    System.out.println("sos pelotudo pero cuando te registras");
+                }
+            }else{
+                System.out.println("sos pelotudo escribiendo contraseNIas");
+            }
+
+        });
         UIComponentManager.addMouseListener(registerButton, new LineBorder(UIAssets.PANEL_BACKGROUND_BORDER), UIAssets.REGISTER_HOVER_BUTTON_IMG, UIAssets.REGISTER_BUTTON_IMG);
         UIComponentManager.addMouseListener(backButton, new LineBorder(UIAssets.PANEL_BACKGROUND_BORDER), UIAssets.BACK_HOVER_BUTTON_IMG, UIAssets.BACK_BUTTON_IMG);
     }

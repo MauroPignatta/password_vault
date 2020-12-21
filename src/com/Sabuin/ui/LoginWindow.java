@@ -1,7 +1,10 @@
 package com.Sabuin.ui;
 
+import com.Sabuin.factory.AccountFactory;
 import com.Sabuin.helper.ImageHelper;
+import com.Sabuin.manager.AccountManager;
 import com.Sabuin.util.FrameDragListener;
+import com.Sabuin.validator.AccountValidator;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -24,6 +27,9 @@ public class LoginWindow extends JFrame {
     private JButton registerButton = new JButton();
     private JButton closeButton = new JButton();
 
+    private AccountManager accountManager = new AccountManager(new AccountFactory());
+    AppTray appTray = new AppTray(this);
+
     public LoginWindow() {
         setTitle(TITLE);
         setSize(WIDTH, HEIGHT);
@@ -34,6 +40,10 @@ public class LoginWindow extends JFrame {
         addElements();
         addListeners();
         setVisible(true);
+    }
+
+    protected AccountManager getAccountManager(){
+        return accountManager;
     }
 
     private void makeDraggable() {
@@ -81,16 +91,23 @@ public class LoginWindow extends JFrame {
     }
 
     private void addListeners(){
-        closeButton.addActionListener(e -> System.exit(0));
+        closeButton.addActionListener(e -> setVisible(false));
 
+        AccountValidator accountValidator = new AccountValidator();
+        String username = userTextField.getText();
+        String password = passwordTextField.getText();
         loginButton.addActionListener(e -> {
-            if(LoginValidator.validate()){
-                System.out.println(userTextField.getText() + passwordTextField.getText());
+
+            if(accountValidator.validateUsername(username) && accountValidator.validatePassword(password)){
+                System.out.println(accountManager.login(username, password));
+            }else{
+                System.out.println("sos pelotudo");
             }
         });
 
         registerButton.addActionListener(e -> {
-            RegisterDialog registerDialog = new RegisterDialog();
+            RegisterDialog registerDialog = new RegisterDialog(this);
+            setVisible(false);
         });
 
         UIComponentManager.addMouseListener(loginButton,null, UIAssets.LOGIN_HOVER_BUTTON_IMG, UIAssets.LOGIN_BUTTON_IMG);
