@@ -1,7 +1,6 @@
 package com.Sabuin.ui;
 
 import com.Sabuin.helper.ImageHelper;
-import com.Sabuin.ui.UIColor;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -12,20 +11,20 @@ import java.awt.event.MouseEvent;
 public class UIComponentManager {
 
     public static void edit(JTextField jTextField){
-        jTextField.setBackground(UIColor.TEXT_FIELD_BACKGROUND);
-        jTextField.setBorder(new LineBorder(UIColor.TEXT_FIELD_BORDER));
-        jTextField.setSelectionColor(UIColor.TEXT_FIELD_SELECTION);
-        jTextField.setSelectedTextColor(UIColor.TEXT_FIELD_SELECTED_TEXT);
-        jTextField.setCaretColor(UIColor.TEXT_FIELD_CARET);
-        jTextField.setForeground(UIColor.TEXT_FIELD_FOREGROUND);
+        jTextField.setBackground(UIAssets.TEXT_FIELD_BACKGROUND);
+        jTextField.setBorder(new LineBorder(UIAssets.TEXT_FIELD_BORDER));
+        jTextField.setSelectionColor(UIAssets.TEXT_FIELD_SELECTION);
+        jTextField.setSelectedTextColor(UIAssets.TEXT_FIELD_SELECTED_TEXT);
+        jTextField.setCaretColor(UIAssets.TEXT_FIELD_CARET);
+        jTextField.setForeground(UIAssets.TEXT_FIELD_FOREGROUND);
     }
 
-    public static void edit(JButton button, Border border, String imagePath){
+    public static void edit(JButton button, Border border, ImageIcon imageIcon){
         button.setBorder(border);
-        button.setIcon(ImageHelper.openImageAsIcon(imagePath));
+        button.setIcon(imageIcon);
     }
 
-    public static void addMouseListener(JButton button, Border border, String hoverImage, String image){
+    public static void addMouseListener(JButton button, Border border, ImageIcon hoverImage, ImageIcon image){
         button.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
