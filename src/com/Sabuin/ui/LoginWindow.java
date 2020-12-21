@@ -30,7 +30,6 @@ public class LoginWindow extends JFrame {
     private JButton registerButton = new JButton();
     private JButton closeButton = new JButton();
 
-
     public LoginWindow() {
         setTitle(TITLE);
         setSize(WIDTH, HEIGHT);

@@ -1,5 +1,8 @@
 package com.Sabuin.config;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import java.io.*;
 import java.util.Properties;
 
@@ -13,12 +16,14 @@ public class Config {
 
     private static Config config;
     private final Properties properties;
+    private final Gson gson;
 
     private File configFile;
     private String homePath;
 
     private Config(){
         properties = new Properties();
+        gson = new GsonBuilder().serializeNulls().create();
         addDefaultValues();
         loadConfigFile();
     }
@@ -94,6 +99,10 @@ public class Config {
     public void setPassLength(int length) {
         int passLength = Math.min(PASSWORD_MAX_LENGTH, Math.max(PASSWORD_MIN_LENGTH, length));
         properties.put(PROP_LENGTH, String.valueOf(passLength));
+    }
+
+    public Gson getGson() {
+        return gson;
     }
 
     public String getHomePath() {

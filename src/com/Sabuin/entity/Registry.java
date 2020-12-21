@@ -43,4 +43,6 @@ public class Registry extends Account {
     public void setDescription(String description) {
         this.description = description;
     }
+
+
 }

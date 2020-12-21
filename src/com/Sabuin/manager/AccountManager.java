@@ -1,6 +1,6 @@
 package com.Sabuin.manager;
 
-import com.Sabuin.entity.Account;
+import com.Sabuin.config.Config;
 import com.Sabuin.factory.AccountFactory;
 import com.Sabuin.file.BinaryFile;
 
@@ -29,18 +29,19 @@ public class AccountManager {
     }
 
     private void loadAccounts() {
-        String[] stringAccounts = accountFile.toString().split(",");
-
-        for(String account : stringAccounts){
-            if(!account.equals("")){
-                Account currentAccount = factory.createAccount(account);
-                accounts.put(currentAccount.getUsername(), currentAccount.getPassword());
-            }
+        String json = accountFile.toString().replaceAll("[{}\"]", "");
+        String[] accountStrings = json.split(",");
+        for(String s : accountStrings){
+            String[] parsedString = s.split(":");
+            accounts.put(parsedString[0], parsedString[1]);
         }
+
+        System.out.println(accounts);
     }
 
     public boolean login(String username, String password){
-        return accounts.get(username).equals(password);
+        String savedPassword = accounts.get(username);
+        return savedPassword != null && savedPassword.equals(password);
     }
 
     public boolean createAccount(String username, String password){
@@ -53,19 +54,10 @@ public class AccountManager {
     }
 
     private boolean save() {
-
         if(accountFile == null)
             return false;
 
-        StringBuilder builder = new StringBuilder();
-        int size = accounts.size() - 1;
-
-        for(Map.Entry<String, String> entry : accounts.entrySet()){
-            String separator = size-- > 0 ? "," : "";
-            builder.append(factory.createAccount(entry.getKey(), entry.getValue())).append(separator);
-        }
-
-        return accountFile.write(builder.toString());
+        return accountFile.write(Config.getConfig().getGson().toJson(accounts, HashMap.class));
     }
 
 }
