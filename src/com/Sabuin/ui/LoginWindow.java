@@ -8,6 +8,7 @@ import com.Sabuin.validator.AccountValidator;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
+import javax.swing.event.DocumentListener;
 
 
 public class LoginWindow extends JFrame {
@@ -93,11 +94,10 @@ public class LoginWindow extends JFrame {
     private void addListeners(){
         closeButton.addActionListener(e -> setVisible(false));
 
-        AccountValidator accountValidator = new AccountValidator();
-        String username = userTextField.getText();
-        String password = passwordTextField.getText();
         loginButton.addActionListener(e -> {
-
+            AccountValidator accountValidator = new AccountValidator();
+            String username = userTextField.getText();
+            String password = passwordTextField.getText();
             if(accountValidator.validateUsername(username) && accountValidator.validatePassword(password)){
                 System.out.println(accountManager.login(username, password));
             }else{

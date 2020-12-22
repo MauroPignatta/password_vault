@@ -19,6 +19,6 @@ public class AccountValidator {
     }
 
     public boolean validatePassword(String password){
-        return Pattern.matches("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$", password);
+        return Pattern.matches("([!?@#$%^&*]*)((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])).{8,}", password);
     }
 }

@@ -29,7 +29,7 @@ public class AccountManager {
     }
 
     private void loadAccounts() {
-        String json = accountFile.toString().replaceAll("[{}\"]", "");
+        String json = accountFile.read().replaceAll("[{}\"]", "").trim();
         if(json.isEmpty()){
             return;
         }
@@ -39,7 +39,6 @@ public class AccountManager {
             accounts.put(parsedString[0], parsedString[1]);
         }
 
-        System.out.println(accounts);
     }
 
     public boolean login(String username, String password){

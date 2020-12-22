@@ -38,9 +38,9 @@ public class BinaryFile {
 
     public boolean write(String text){
         try {
-            FileOutputStream fos = new FileOutputStream(file);
-            fos.write(text.getBytes(StandardCharsets.UTF_8));
-            fos.close();
+            DataOutputStream dos = new DataOutputStream(new FileOutputStream(file));
+            dos.writeUTF(text);
+            dos.close();
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -48,8 +48,7 @@ public class BinaryFile {
         }
     }
 
-    @Override
-    public String toString(){
+    public String read(){
         FileInputStream fileInputStream = null;
         StringBuilder builder = null;
         try {
