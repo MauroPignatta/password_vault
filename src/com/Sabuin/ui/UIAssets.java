@@ -30,6 +30,27 @@ public class UIAssets {
 
     public static void init(Theme theme){
         switch (theme){
+            case LIGHT_BLACK:
+                PANEL_BACKGROUND = new Color(255,255,255,100);
+                PANEL_BACKGROUND_NO_TRANSPARENCY = new Color(255,255,255);
+                PANEL_BACKGROUND_BORDER = new Color(0,0,0);
+                TEXT_FIELD_BACKGROUND = new Color(244,244,244);
+                TEXT_FIELD_BORDER = Color.WHITE;
+                TEXT_FIELD_SELECTION = Color.BLACK; //barra que selecciona
+                TEXT_FIELD_SELECTED_TEXT = Color.WHITE; //color que obtiene el texto al ser seleccionado
+                TEXT_FIELD_CARET = Color.BLACK; //cursor
+                TEXT_FIELD_FOREGROUND = Color.BLACK; //color de la fuente
+
+                LOGO_IMG = ImageHelper.openImageAsIcon("/logo.png");
+                LOGIN_BUTTON_IMG = ImageHelper.openImageAsIcon("/loginButton.png");
+                LOGIN_HOVER_BUTTON_IMG = ImageHelper.openImageAsIcon("/loginButtonHover.png");
+                REGISTER_BUTTON_IMG = ImageHelper.openImageAsIcon("/registerButton.png");
+                REGISTER_HOVER_BUTTON_IMG = ImageHelper.openImageAsIcon("/registerButtonHover.png");
+                CLOSE_BUTTON_IMG = ImageHelper.openImageAsIcon("/closeButton.png");
+                CLOSE_HOVER_BUTTON_IMG = ImageHelper.openImageAsIcon("/closeButtonHover.png");
+                BACK_BUTTON_IMG = ImageHelper.openImageAsIcon("/backButton.png");
+                BACK_HOVER_BUTTON_IMG = ImageHelper.openImageAsIcon("/backButtonHover.png");
+                break;
             case DARK_RED:
                 PANEL_BACKGROUND = new Color(0,0,0,0.7f);
                 PANEL_BACKGROUND_NO_TRANSPARENCY = new Color(0,0,0);
@@ -54,7 +75,7 @@ public class UIAssets {
             case LIGHT_RED:
                 PANEL_BACKGROUND = new Color(255,255,255,100);
                 PANEL_BACKGROUND_NO_TRANSPARENCY = new Color(255,255,255);
-                PANEL_BACKGROUND_BORDER = new Color(255,25,25, 100);
+                PANEL_BACKGROUND_BORDER = new Color(255,25,25, 200);
                 TEXT_FIELD_BACKGROUND = new Color(244,244,244);
                 TEXT_FIELD_BORDER = Color.WHITE;
                 TEXT_FIELD_SELECTION = Color.BLACK;

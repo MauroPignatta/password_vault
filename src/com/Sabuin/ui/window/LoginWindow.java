@@ -1,14 +1,16 @@
-package com.Sabuin.ui;
+package com.Sabuin.ui.window;
 
 import com.Sabuin.factory.AccountFactory;
-import com.Sabuin.helper.ImageHelper;
 import com.Sabuin.manager.AccountManager;
+import com.Sabuin.ui.AppTray;
+import com.Sabuin.ui.UIAssets;
+import com.Sabuin.ui.UIComponentManager;
 import com.Sabuin.util.FrameDragListener;
 import com.Sabuin.validator.AccountValidator;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
-import javax.swing.event.DocumentListener;
+import java.awt.geom.RoundRectangle2D;
 
 
 public class LoginWindow extends JFrame {

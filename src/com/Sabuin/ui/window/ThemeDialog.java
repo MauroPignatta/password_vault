@@ -1,13 +1,12 @@
-package com.Sabuin.ui;
+package com.Sabuin.ui.window;
 
 import com.Sabuin.enums.Theme;
 import com.Sabuin.helper.ImageHelper;
+import com.Sabuin.ui.UIAssets;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class ThemeDialog extends JDialog {
     private final static int WIDTH = 300;
@@ -20,7 +19,7 @@ public class ThemeDialog extends JDialog {
     private JPanel panel = new JPanel();
     private JButton okButton = new JButton("OK");
 
-    Theme [] themes ={Theme.DARK_RED, Theme.LIGHT_RED};
+    Theme [] themes ={Theme.DARK_RED, Theme.LIGHT_RED, Theme.LIGHT_BLACK};
     JList<Theme> jList = new JList<>(themes);
 
 

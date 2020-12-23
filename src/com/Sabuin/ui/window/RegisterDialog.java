@@ -1,9 +1,11 @@
-package com.Sabuin.ui;
+package com.Sabuin.ui.window;
 
 import com.Sabuin.helper.ImageHelper;
 import com.Sabuin.manager.AccountManager;
+import com.Sabuin.ui.UIAssets;
+import com.Sabuin.ui.UIComponentManager;
+import com.Sabuin.ui.window.LoginWindow;
 import com.Sabuin.validator.AccountValidator;
-import sun.rmi.runtime.Log;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -92,11 +94,12 @@ public class RegisterDialog extends JDialog {
             if(password1.equals(password2)){
                 if(accountValidator.validateUsername(username) && accountValidator.validatePassword(password1)){
                     accountManager.createAccount(username, password1);
+                    System.out.println("registrado :)");
                 }else{
                     System.out.println("sos pelotudo pero cuando te registras");
                 }
             }else{
-                System.out.println("sos pelotudo escribiendo contraseNIas");
+                System.out.println("sos pelotudo contraseNIas no son iguales");
             }
 
         });
