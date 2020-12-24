@@ -11,6 +11,7 @@ import com.Sabuin.validator.AccountValidator;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
+import java.awt.event.ActionListener;
 
 
 public class LoginWindow extends JFrame {
@@ -26,11 +27,18 @@ public class LoginWindow extends JFrame {
     private JPanel panel = new JPanel();
     private JTextField userTextField = new JTextField("User");
     private JTextField passwordTextField = new JPasswordField("Password");
-    private JButton loginButton = new UIButton((WIDTH/2)-50-BORDER_THICKNESS,185, UIAssets.LOGIN_BUTTON_IMG, UIAssets.LOGIN_HOVER_BUTTON_IMG);
-    private JButton registerButton = new UIButton((WIDTH/2)-50-BORDER_THICKNESS,211, UIAssets.REGISTER_BUTTON_IMG, UIAssets.REGISTER_HOVER_BUTTON_IMG);
-    private JButton closeButton = new UIButton((WIDTH/2)-50-BORDER_THICKNESS,237, UIAssets.CLOSE_BUTTON_IMG, UIAssets.CLOSE_HOVER_BUTTON_IMG);
+    private JButton loginButton = new UIButton("login", (WIDTH/2)-50-BORDER_THICKNESS,185, UIAssets.LOGIN_BUTTON_IMG, UIAssets.LOGIN_HOVER_BUTTON_IMG);
+    private JButton registerButton = new UIButton("register",(WIDTH/2)-50-BORDER_THICKNESS,211, UIAssets.REGISTER_BUTTON_IMG, UIAssets.REGISTER_HOVER_BUTTON_IMG);
+    private JButton closeButton = new UIButton("close",(WIDTH/2)-50-BORDER_THICKNESS,237, UIAssets.CLOSE_BUTTON_IMG, UIAssets.CLOSE_HOVER_BUTTON_IMG);
 
-    private AccountManager accountManager = new AccountManager(new AccountFactory());
+    public String getUser(){
+        return userTextField.getText();
+    }
+
+    public String getPassword(){
+        return passwordTextField.getText();
+    }
+
     AppTray appTray = new AppTray(this);
 
     public LoginWindow() {
@@ -41,12 +49,7 @@ public class LoginWindow extends JFrame {
         makeDraggable();
         editElements();
         addElements();
-        addListeners();
         setVisible(true);
-    }
-
-    protected AccountManager getAccountManager(){
-        return accountManager;
     }
 
     private void makeDraggable() {
@@ -84,19 +87,10 @@ public class LoginWindow extends JFrame {
         panel.add(registerButton);
     }
 
-    private void addListeners(){
-        closeButton.addActionListener(e -> setVisible(false));
-
-        loginButton.addActionListener(e -> {
-            AccountValidator accountValidator = new AccountValidator();
-            String username = userTextField.getText();
-            String password = passwordTextField.getText();
-            if(accountValidator.validateUsername(username) && accountValidator.validatePassword(password)){
-                System.out.println(accountManager.login(username, password));
-            }else{
-                System.out.println("sos pelotudo");
-            }
-        });
+    public void addListeners(ActionListener actionListener){
+        closeButton.addActionListener(actionListener);
+        loginButton.addActionListener(actionListener);
+        registerButton.addActionListener(actionListener);
     }
 
 }
