@@ -1,7 +1,7 @@
 package com.Sabuin.ui;
 
 import com.Sabuin.enums.Theme;
-import com.Sabuin.helper.ImageHelper;
+import com.Sabuin.util.ImageUtils;
 
 import javax.swing.*;
 import java.awt.*;
@@ -41,15 +41,15 @@ public class UIAssets {
                 TEXT_FIELD_CARET = Color.BLACK; //cursor
                 TEXT_FIELD_FOREGROUND = Color.BLACK; //color de la fuente
 
-                LOGO_IMG = ImageHelper.openImageAsIcon("/logo.png");
-                LOGIN_BUTTON_IMG = ImageHelper.openImageAsIcon("/loginButton.png");
-                LOGIN_HOVER_BUTTON_IMG = ImageHelper.openImageAsIcon("/loginButtonHover.png");
-                REGISTER_BUTTON_IMG = ImageHelper.openImageAsIcon("/registerButton.png");
-                REGISTER_HOVER_BUTTON_IMG = ImageHelper.openImageAsIcon("/registerButtonHover.png");
-                CLOSE_BUTTON_IMG = ImageHelper.openImageAsIcon("/closeButton.png");
-                CLOSE_HOVER_BUTTON_IMG = ImageHelper.openImageAsIcon("/closeButtonHover.png");
-                BACK_BUTTON_IMG = ImageHelper.openImageAsIcon("/backButton.png");
-                BACK_HOVER_BUTTON_IMG = ImageHelper.openImageAsIcon("/backButtonHover.png");
+                LOGO_IMG = ImageUtils.openImageFromResourcesAsIcon("/logo.png");
+                LOGIN_BUTTON_IMG = ImageUtils.openImageFromResourcesAsIcon("/loginButton.png");
+                LOGIN_HOVER_BUTTON_IMG = ImageUtils.openImageFromResourcesAsIcon("/loginButtonHover.png");
+                REGISTER_BUTTON_IMG = ImageUtils.openImageFromResourcesAsIcon("/registerButton.png");
+                REGISTER_HOVER_BUTTON_IMG = ImageUtils.openImageFromResourcesAsIcon("/registerButtonHover.png");
+                CLOSE_BUTTON_IMG = ImageUtils.openImageFromResourcesAsIcon("/closeButton.png");
+                CLOSE_HOVER_BUTTON_IMG = ImageUtils.openImageFromResourcesAsIcon("/closeButtonHover.png");
+                BACK_BUTTON_IMG = ImageUtils.openImageFromResourcesAsIcon("/backButton.png");
+                BACK_HOVER_BUTTON_IMG = ImageUtils.openImageFromResourcesAsIcon("/backButtonHover.png");
                 break;
             case DARK_RED:
                 PANEL_BACKGROUND = new Color(0,0,0,0.7f);
@@ -62,15 +62,15 @@ public class UIAssets {
                 TEXT_FIELD_CARET = Color.WHITE; //cursor
                 TEXT_FIELD_FOREGROUND = Color.WHITE; //color de la fuente
 
-                LOGO_IMG = ImageHelper.openImageAsIcon("/logo.png");
-                LOGIN_BUTTON_IMG = ImageHelper.openImageAsIcon("/loginButton.png");
-                LOGIN_HOVER_BUTTON_IMG = ImageHelper.openImageAsIcon("/loginButtonHover.png");
-                REGISTER_BUTTON_IMG = ImageHelper.openImageAsIcon("/registerButton.png");
-                REGISTER_HOVER_BUTTON_IMG = ImageHelper.openImageAsIcon("/registerButtonHover.png");
-                CLOSE_BUTTON_IMG = ImageHelper.openImageAsIcon("/closeButton.png");
-                CLOSE_HOVER_BUTTON_IMG = ImageHelper.openImageAsIcon("/closeButtonHover.png");
-                BACK_BUTTON_IMG = ImageHelper.openImageAsIcon("/backButton.png");
-                BACK_HOVER_BUTTON_IMG = ImageHelper.openImageAsIcon("/backButtonHover.png");
+                LOGO_IMG = ImageUtils.openImageFromResourcesAsIcon("/logo.png");
+                LOGIN_BUTTON_IMG = ImageUtils.openImageFromResourcesAsIcon("/loginButton.png");
+                LOGIN_HOVER_BUTTON_IMG = ImageUtils.openImageFromResourcesAsIcon("/loginButtonHover.png");
+                REGISTER_BUTTON_IMG = ImageUtils.openImageFromResourcesAsIcon("/registerButton.png");
+                REGISTER_HOVER_BUTTON_IMG = ImageUtils.openImageFromResourcesAsIcon("/registerButtonHover.png");
+                CLOSE_BUTTON_IMG = ImageUtils.openImageFromResourcesAsIcon("/closeButton.png");
+                CLOSE_HOVER_BUTTON_IMG = ImageUtils.openImageFromResourcesAsIcon("/closeButtonHover.png");
+                BACK_BUTTON_IMG = ImageUtils.openImageFromResourcesAsIcon("/backButton.png");
+                BACK_HOVER_BUTTON_IMG = ImageUtils.openImageFromResourcesAsIcon("/backButtonHover.png");
                 break;
             case LIGHT_RED:
                 PANEL_BACKGROUND = new Color(255,255,255,100);
@@ -83,15 +83,15 @@ public class UIAssets {
                 TEXT_FIELD_CARET = Color.BLACK;
                 TEXT_FIELD_FOREGROUND = Color.BLACK;
 
-                LOGO_IMG = ImageHelper.openImageAsIcon("/logo.png");
-                LOGIN_BUTTON_IMG = ImageHelper.openImageAsIcon("/loginButton.png");
-                LOGIN_HOVER_BUTTON_IMG = ImageHelper.openImageAsIcon("/loginButtonHover.png");
-                REGISTER_BUTTON_IMG = ImageHelper.openImageAsIcon("/registerButton.png");
-                REGISTER_HOVER_BUTTON_IMG = ImageHelper.openImageAsIcon("/registerButtonHover.png");
-                CLOSE_BUTTON_IMG = ImageHelper.openImageAsIcon("/closeButton.png");
-                CLOSE_HOVER_BUTTON_IMG = ImageHelper.openImageAsIcon("/closeButtonHover.png");
-                BACK_BUTTON_IMG = ImageHelper.openImageAsIcon("/backButton.png");
-                BACK_HOVER_BUTTON_IMG = ImageHelper.openImageAsIcon("/backButtonHover.png");
+                LOGO_IMG = ImageUtils.openImageFromResourcesAsIcon("/logo.png");
+                LOGIN_BUTTON_IMG = ImageUtils.openImageFromResourcesAsIcon("/loginButton.png");
+                LOGIN_HOVER_BUTTON_IMG = ImageUtils.openImageFromResourcesAsIcon("/loginButtonHover.png");
+                REGISTER_BUTTON_IMG = ImageUtils.openImageFromResourcesAsIcon("/registerButton.png");
+                REGISTER_HOVER_BUTTON_IMG = ImageUtils.openImageFromResourcesAsIcon("/registerButtonHover.png");
+                CLOSE_BUTTON_IMG = ImageUtils.openImageFromResourcesAsIcon("/closeButton.png");
+                CLOSE_HOVER_BUTTON_IMG = ImageUtils.openImageFromResourcesAsIcon("/closeButtonHover.png");
+                BACK_BUTTON_IMG = ImageUtils.openImageFromResourcesAsIcon("/backButton.png");
+                BACK_HOVER_BUTTON_IMG = ImageUtils.openImageFromResourcesAsIcon("/backButtonHover.png");
         }
     }
 }

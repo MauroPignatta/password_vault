@@ -1,7 +1,7 @@
 package com.Sabuin.ui;
 
 import com.Sabuin.config.Config;
-import com.Sabuin.helper.ImageHelper;
+import com.Sabuin.util.ImageUtils;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,7 +10,7 @@ import java.awt.event.WindowEvent;
 
 public class Window {
 
-    public static Image ICON_IMAGE = ImageHelper.openImage("/icon/icon.png");
+    public static Image ICON_IMAGE = ImageUtils.openImageFromResources("/icon/icon.png");
 
     public static Window window;
 

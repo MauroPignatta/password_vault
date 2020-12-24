@@ -1,7 +1,7 @@
 package com.Sabuin.ui.window;
 
 import com.Sabuin.enums.Theme;
-import com.Sabuin.helper.ImageHelper;
+import com.Sabuin.util.ImageUtils;
 import com.Sabuin.ui.UIAssets;
 
 import javax.swing.*;
@@ -13,7 +13,7 @@ public class ThemeDialog extends JDialog {
     private final static int HEIGHT = 300;
     private final static int BORDER_THICKNESS = 5;
 
-    private ImageIcon icon = ImageHelper.openImageAsIcon("/logo.png");
+    private ImageIcon icon = ImageUtils.openImageFromResourcesAsIcon("/logo.png");
 
     private JLabel labelIcon = new JLabel("logo");
     private JPanel panel = new JPanel();

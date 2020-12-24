@@ -1,11 +1,9 @@
 package com.Sabuin.ui.window;
 
-import com.Sabuin.helper.ImageHelper;
-import com.Sabuin.manager.AccountManager;
+import com.Sabuin.util.ImageUtils;
 import com.Sabuin.ui.UIAssets;
 import com.Sabuin.ui.component.UIButton;
 import com.Sabuin.ui.component.UIComponentManager;
-import com.Sabuin.validator.AccountValidator;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -17,7 +15,7 @@ public class RegisterDialog extends JDialog {
     private final static int HEIGHT = 300;
     private final static int BORDER_THICKNESS = 5;
 
-    private ImageIcon icon = ImageHelper.openImageAsIcon("/logo.png");
+    private ImageIcon icon = ImageUtils.openImageFromResourcesAsIcon("/logo.png");
 
     private JLabel labelIcon = new JLabel("logo");
     private JPanel panel = new JPanel();

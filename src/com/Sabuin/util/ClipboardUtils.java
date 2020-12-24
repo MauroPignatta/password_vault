@@ -1,10 +1,10 @@
-package com.Sabuin.helper;
+package com.Sabuin.util;
 
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 
-public class ClipboardHelper {
+public class ClipboardUtils {
 
     public static void copyToClipboard(String text){
         StringSelection stringSelection = new StringSelection(text);

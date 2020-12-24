@@ -1,8 +1,11 @@
 package com.Sabuin.entity;
 
+import java.net.URL;
+
 public class Registry extends Account {
 
     private String name;
+    private URL url;
     private Account account;
     private String description;
 
@@ -28,6 +31,14 @@ public class Registry extends Account {
         this.name = name;
     }
 
+    public URL getUrl() {
+        return url;
+    }
+
+    public void setUrl(URL url) {
+        this.url = url;
+    }
+
     public Account getAccount() {
         return account;
     }
@@ -43,6 +54,4 @@ public class Registry extends Account {
     public void setDescription(String description) {
         this.description = description;
     }
-
-
 }
