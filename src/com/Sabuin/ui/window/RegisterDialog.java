@@ -3,8 +3,7 @@ package com.Sabuin.ui.window;
 import com.Sabuin.helper.ImageHelper;
 import com.Sabuin.manager.AccountManager;
 import com.Sabuin.ui.UIAssets;
-import com.Sabuin.ui.UIComponentManager;
-import com.Sabuin.ui.window.LoginWindow;
+import com.Sabuin.ui.component.UIComponentManager;
 import com.Sabuin.validator.AccountValidator;
 
 import javax.swing.*;

@@ -4,13 +4,13 @@ import com.Sabuin.factory.AccountFactory;
 import com.Sabuin.manager.AccountManager;
 import com.Sabuin.ui.AppTray;
 import com.Sabuin.ui.UIAssets;
-import com.Sabuin.ui.UIComponentManager;
+import com.Sabuin.ui.component.UIComponentManager;
+import com.Sabuin.ui.component.UIButton;
 import com.Sabuin.util.FrameDragListener;
 import com.Sabuin.validator.AccountValidator;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
-import java.awt.geom.RoundRectangle2D;
 
 
 public class LoginWindow extends JFrame {
@@ -26,9 +26,9 @@ public class LoginWindow extends JFrame {
     private JPanel panel = new JPanel();
     private JTextField userTextField = new JTextField("User");
     private JTextField passwordTextField = new JPasswordField("Password");
-    private JButton loginButton = new JButton();
-    private JButton registerButton = new JButton();
-    private JButton closeButton = new JButton();
+    private JButton loginButton = new UIButton((WIDTH/2)-50-BORDER_THICKNESS,185, UIAssets.LOGIN_BUTTON_IMG, UIAssets.LOGIN_HOVER_BUTTON_IMG);
+    private JButton registerButton = new UIButton((WIDTH/2)-50-BORDER_THICKNESS,211, UIAssets.REGISTER_BUTTON_IMG, UIAssets.REGISTER_HOVER_BUTTON_IMG);
+    private JButton closeButton = new UIButton((WIDTH/2)-50-BORDER_THICKNESS,237, UIAssets.CLOSE_BUTTON_IMG, UIAssets.CLOSE_HOVER_BUTTON_IMG);
 
     private AccountManager accountManager = new AccountManager(new AccountFactory());
     AppTray appTray = new AppTray(this);
@@ -65,15 +65,6 @@ public class LoginWindow extends JFrame {
 
         passwordTextField.setBounds((WIDTH/2)-50-BORDER_THICKNESS,156,100,25);
         UIComponentManager.edit(passwordTextField);
-
-        loginButton.setBounds((WIDTH/2)-50-BORDER_THICKNESS,185,100,25);
-        UIComponentManager.edit(loginButton, null, UIAssets.LOGIN_BUTTON_IMG);
-
-        registerButton.setBounds((WIDTH/2)-50-BORDER_THICKNESS,211,100,25);
-        UIComponentManager.edit(registerButton, null, UIAssets.REGISTER_BUTTON_IMG);
-
-        closeButton.setBounds((WIDTH/2)-50-BORDER_THICKNESS,237,100,25);
-        UIComponentManager.edit(closeButton, null,UIAssets.CLOSE_BUTTON_IMG);
     }
 
     private void editPanel(){
@@ -106,15 +97,6 @@ public class LoginWindow extends JFrame {
                 System.out.println("sos pelotudo");
             }
         });
-
-        registerButton.addActionListener(e -> {
-            RegisterDialog registerDialog = new RegisterDialog(this);
-            setVisible(false);
-        });
-
-        UIComponentManager.addMouseListener(loginButton,null, UIAssets.LOGIN_HOVER_BUTTON_IMG, UIAssets.LOGIN_BUTTON_IMG);
-        UIComponentManager.addMouseListener(registerButton,null,UIAssets.REGISTER_HOVER_BUTTON_IMG, UIAssets.REGISTER_BUTTON_IMG);
-        UIComponentManager.addMouseListener(closeButton,null,UIAssets.CLOSE_HOVER_BUTTON_IMG, UIAssets.CLOSE_BUTTON_IMG);
     }
 
 }

@@ -1,6 +1,6 @@
-package com.Sabuin.ui;
+package com.Sabuin.ui.component;
 
-import com.Sabuin.helper.ImageHelper;
+import com.Sabuin.ui.UIAssets;
 
 import javax.swing.*;
 import javax.swing.border.Border;
