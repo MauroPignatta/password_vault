@@ -2,7 +2,7 @@ package com.Sabuin.entity;
 
 import java.net.URL;
 
-public class Registry extends Account {
+public class Registry {
 
     private String name;
     private URL url;

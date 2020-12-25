@@ -12,12 +12,6 @@ public class Main {
         LoginWindow loginWindow = new LoginWindow();
         LoginController loginController = new LoginController(loginWindow);
 
-//        try {
-//            URL url = new URL("https://upload.wikimedia.org/wikipedia/commons/1/17/Gatito.01.png");
-//            System.out.println(((BufferedImage) ImageUtils.openImageFromURL(url)).getWidth());
-//        } catch (MalformedURLException e) {
-//            e.printStackTrace();
-//        }
 
     }
 

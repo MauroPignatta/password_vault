@@ -14,7 +14,7 @@ public class RegistryFactory {
         return registry;
     }
 
-    public Account createRegistry(String json){
+    public Registry createRegistry(String json){
         return Config.getConfig().getGson().fromJson(json, Registry.class);
     }
 

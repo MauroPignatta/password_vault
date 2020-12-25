@@ -1,24 +1,26 @@
 package com.Sabuin.manager;
 
 import com.Sabuin.config.Config;
+import com.Sabuin.entity.Registry;
 import com.Sabuin.factory.AccountFactory;
 import com.Sabuin.file.BinaryFile;
+import com.Sabuin.log.Log;
+import com.Sabuin.log.LogType;
+import com.Sabuin.util.Base64Utils;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class AccountManager {
 
     private static final String filename = "data.psv";
 
-    private Map<String, String> accounts;
+    private Map accounts;
 
     private BinaryFile accountFile;
     private AccountFactory factory;
 
     public AccountManager(AccountFactory factory) {
         this.factory = factory;
-        accounts = new HashMap<>();
 
         openAccountFile();
         loadAccounts();
@@ -29,20 +31,22 @@ public class AccountManager {
     }
 
     private void loadAccounts() {
-        String json = accountFile.read().replaceAll("[{}\"]", "").trim();
-        if(json.isEmpty()){
-            return;
+        try{
+            String fileContent = accountFile.read();
+            if(!fileContent.isEmpty()){
+                String json = Base64Utils.decode(fileContent);
+                accounts = Config.getConfig().getGson().fromJson(json, Map.class);
+            } else {
+                accounts = new HashMap();
+            }
+        } catch (Exception e){
+            System.err.println(new Log(LogType.ERROR,
+                    "An error occurred trying to load " + accountFile.getPath()));
         }
-        String[] accountStrings = json.split(",");
-        for(String s : accountStrings){
-            String[] parsedString = s.split(":");
-            accounts.put(parsedString[0], parsedString[1]);
-        }
-
     }
 
     public boolean login(String username, String password){
-        String savedPassword = accounts.get(username);
+        String savedPassword = (String) accounts.get(username);
         return savedPassword != null && savedPassword.equals(password);
     }
 
@@ -56,10 +60,14 @@ public class AccountManager {
     }
 
     private boolean save() {
-        if(accountFile == null)
-            return false;
-
-        return accountFile.write(Config.getConfig().getGson().toJson(accounts, HashMap.class));
+        try{
+            String accountsString = Base64Utils.encode(Config.getConfig().getGson().toJson(accounts, Map.class));
+            accountFile.write(accountsString);
+            return true;
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return false;
     }
 
 }

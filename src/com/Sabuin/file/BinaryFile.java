@@ -64,8 +64,11 @@ public class BinaryFile {
             e.printStackTrace();
         }
 
-        return builder != null ? builder.toString() : "";
+        return builder != null ? builder.toString().trim().substring(1) : "";
     }
 
+    public String getPath(){
+        return file.getPath();
+    }
 
 }
