@@ -64,7 +64,7 @@ public class BinaryFile {
             e.printStackTrace();
         }
 
-        return builder != null ? builder.toString().trim().substring(1) : "";
+        return builder != null && builder.length() > 1? builder.toString().trim().substring(1) : "";
     }
 
     public String getPath(){
