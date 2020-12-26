@@ -2,15 +2,31 @@ package com.Sabuin.util;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.regex.Pattern;
 
 public class URLUtils {
 
-    public static URL getFavicon(URL url) throws MalformedURLException {
-        return new URL(url.getProtocol() + "://" + url.getHost() + "/favicon.ico");
+    public static URL toURL(String url){
+        try{
+            if(verifyURL(url))
+                return new URL(url);
+        } catch (MalformedURLException ignored){}
+        return null;
     }
 
-    public static URL getFavicon(String url) throws MalformedURLException {
-        return getFavicon(new URL(url));
+    public static boolean verifyURL(String url){
+        return Pattern.matches("https?:\\/\\/(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()@:%_\\+.~#?&//=]*)", url);
+    }
+
+    public static URL getFavicon(URL url) {
+        return toURL(url.getProtocol() + "://" + url.getHost() + "/favicon.ico");
+    }
+
+    public static URL getFavicon(String url) {
+        try{
+            return getFavicon(new URL(url));
+        } catch (MalformedURLException ignored){}
+        return null;
     }
 
 }

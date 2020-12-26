@@ -7,7 +7,6 @@ import com.Sabuin.log.Log;
 import com.Sabuin.log.LogType;
 import com.Sabuin.util.Base64Utils;
 import com.google.gson.Gson;
-import com.google.gson.stream.MalformedJsonException;
 
 import java.util.*;
 
@@ -39,13 +38,19 @@ public class RegistryManager {
         return new ArrayList<>(list);
     }
 
-    public void saveRegistries(){
+    private void saveRegistries(){
         Gson gson = Config.getConfig().getGson();
         file.write(Base64Utils.encode(gson.toJson(registries.toArray(), Registry[].class)));
     }
 
     public void addRegistry(Registry registry){
         registries.add(registry);
+        saveRegistries();
+    }
+
+    public void deleteRegistry(Registry registry){
+        registries.remove(registry);
+        saveRegistries();
     }
 
 }

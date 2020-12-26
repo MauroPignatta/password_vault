@@ -1,50 +1,30 @@
 package com.Sabuin.file;
 
-import com.Sabuin.config.Config;
 import com.sun.istack.internal.Nullable;
 
 import java.io.*;
-import java.nio.charset.StandardCharsets;
+
+import static com.Sabuin.util.FileUtils.createOrOpenFile;
 
 public class BinaryFile {
 
     private File file;
 
     public BinaryFile(String filename) {
-        createOrOpenFile(null, filename);
+        file = createOrOpenFile(filename);
     }
 
     public BinaryFile(@Nullable String directory, String filename) {
-        createOrOpenFile(directory, filename);
+        file = createOrOpenFile(directory, filename);
     }
 
-    private void createOrOpenFile(@Nullable String directory, String filename) {
-        String finalDirectory = Config.getConfig().getHomePath() + "\\";
-        if(directory != null){
-            finalDirectory += directory + "\\";
-        }
-
-        File directoryFile = new File(finalDirectory);
-        directoryFile.mkdirs();
-
-        finalDirectory += filename;
-        this.file = new File(finalDirectory);
-        try {
-            file.createNewFile();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public boolean write(String text){
+    public void write(String text){
         try {
             DataOutputStream dos = new DataOutputStream(new FileOutputStream(file));
             dos.writeUTF(text);
             dos.close();
-            return true;
         } catch (Exception e) {
             e.printStackTrace();
-            return false;
         }
     }
 
