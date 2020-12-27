@@ -29,22 +29,21 @@ public class BinaryFile {
     }
 
     public String read(){
-        FileInputStream fileInputStream = null;
-        StringBuilder builder = null;
+        String s = "";
         try {
-            fileInputStream = new FileInputStream(file);
-            byte[] bytes = new byte[4096];
-            builder = new StringBuilder();
+            FileInputStream fis = new FileInputStream(file);
+            DataInputStream dis = new DataInputStream(fis);
 
-            while(fileInputStream.read(bytes) > 0){
-                builder.append(new String(bytes));
+            if (dis.available() > 0) {
+                s = dis.readUTF();
             }
-            fileInputStream.close();
+
+            dis.close();
+            fis.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        return builder != null && builder.length() > 1? builder.toString().trim().substring(1) : "";
+        return s;
     }
 
     public String getPath(){

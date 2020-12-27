@@ -9,13 +9,27 @@ public class URLUtils {
     public static URL toURL(String url){
         try{
             if(verifyURL(url))
+                if(!hasProtocol(url))
+                    url = addProtocol(url);
                 return new URL(url);
         } catch (MalformedURLException ignored){}
         return null;
     }
 
+    private static String addProtocol(String url){
+        return "http://" + url;
+    }
+
+    private static boolean hasProtocol(String url){
+        return Pattern.matches("https?:\\/\\/", url);
+    }
+
     public static boolean verifyURL(String url){
-        return Pattern.matches("https?:\\/\\/(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()@:%_\\+.~#?&//=]*)", url);
+        if(!hasProtocol(url)){
+            url = addProtocol(url);
+        }
+        String withHttpRegex = "https?:\\/\\/(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()@:%_\\+.~#?&//=]*)";
+        return Pattern.matches(withHttpRegex, url);
     }
 
     public static URL getFavicon(URL url) {
