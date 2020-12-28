@@ -52,11 +52,11 @@ public class UIAssets {
                 BACK_HOVER_BUTTON_IMG = ImageUtils.openImageFromResourcesAsIcon("/backButtonHover.png");
                 break;
             case DARK_RED:
-                PANEL_BACKGROUND = new Color(0,0,0,0.7f);
-                PANEL_BACKGROUND_NO_TRANSPARENCY = new Color(0,0,0);
-                PANEL_BACKGROUND_BORDER = new Color(255,25,25, 100);
-                TEXT_FIELD_BACKGROUND = new Color(36,36,36);
-                TEXT_FIELD_BORDER = Color.BLACK;
+                PANEL_BACKGROUND = new Color(36,36,36);
+                PANEL_BACKGROUND_NO_TRANSPARENCY = new Color(36,36,36);
+                PANEL_BACKGROUND_BORDER = new Color(63,63,63);
+                TEXT_FIELD_BACKGROUND = new Color(46,46,46);
+                TEXT_FIELD_BORDER = new Color(63,63,63);
                 TEXT_FIELD_SELECTION = Color.WHITE; //barra que selecciona
                 TEXT_FIELD_SELECTED_TEXT = Color.BLACK; //color que obtiene el texto al ser seleccionado
                 TEXT_FIELD_CARET = Color.WHITE; //cursor
