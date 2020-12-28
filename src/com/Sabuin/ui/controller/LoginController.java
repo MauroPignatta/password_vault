@@ -2,10 +2,12 @@ package com.Sabuin.ui.controller;
 
 import com.Sabuin.factory.AccountFactory;
 import com.Sabuin.manager.AccountManager;
+import com.Sabuin.ui.component.Message;
 import com.Sabuin.ui.window.LoginWindow;
 import com.Sabuin.ui.window.RegisterDialog;
 import com.Sabuin.validator.AccountValidator;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -44,11 +46,12 @@ public class LoginController implements ActionListener {
                 if(accountValidator.validateUsername(username) && accountValidator.validatePassword(password)){
                     System.out.println(accountManager.login(username, password));
                 }else{
-                    System.out.println("sos pelotudo");
+                    Message.show("Alguno de los campos es incorrecto");
                 }
                 break;
             case "close":
                 loginWindow.setVisible(false);
+                System.exit(0);
                 break;
             case "register":
                 loginWindow.setVisible(false);

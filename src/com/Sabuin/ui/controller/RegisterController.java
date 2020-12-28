@@ -1,6 +1,7 @@
 package com.Sabuin.ui.controller;
 
 import com.Sabuin.manager.AccountManager;
+import com.Sabuin.ui.component.Message;
 import com.Sabuin.ui.window.RegisterDialog;
 import com.Sabuin.validator.AccountValidator;
 
@@ -28,12 +29,13 @@ public class RegisterController implements ActionListener {
                 if(password1.equals(password2)){
                     if(accountValidator.validateUsername(username) && accountValidator.validatePassword(password1)){
                         accountManager.createAccount(username, password1);
-                        System.out.println("registrado :)");
+                        Message.show("Registrado con exito!");
                     }else{
-                        System.out.println("sos pelotudo pero cuando te registras");
+
+                        Message.show("<html><body>El formato de datos es incorrecto:  <br>Usuario: xxxx   Contraseña: xxxx </body></html>");
                     }
                 }else{
-                    System.out.println("sos pelotudo contraseNIas no son iguales");
+                    Message.show("Las contraseñas no son iguales");
                 }
                 break;
             case "back":

@@ -45,7 +45,7 @@ public class LoginWindow extends JFrame {
         setTitle(TITLE);
         setSize(WIDTH, HEIGHT);
         setLocationRelativeTo(null);
-        setUndecorated(true); //removes title bar
+        setUndecorated(true);
         makeDraggable();
         editElements();
         addElements();

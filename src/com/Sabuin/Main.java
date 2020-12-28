@@ -12,9 +12,9 @@ import java.io.File;
 public class Main {
 
     public static void main(String[] args) {
-//        UIAssets.init(Theme.LIGHT_BLACK);
-//        LoginWindow loginWindow = new LoginWindow();
-//        LoginController loginController = new LoginController(loginWindow);
+        UIAssets.init(Theme.DARK_RED);
+        LoginWindow loginWindow = new LoginWindow();
+        LoginController loginController = new LoginController(loginWindow);
     }
 
 }
