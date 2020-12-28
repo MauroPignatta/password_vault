@@ -4,10 +4,10 @@ import com.Sabuin.factory.AccountFactory;
 import com.Sabuin.manager.AccountManager;
 import com.Sabuin.ui.component.Message;
 import com.Sabuin.ui.window.LoginWindow;
+import com.Sabuin.ui.window.MainWindow;
 import com.Sabuin.ui.window.RegisterDialog;
 import com.Sabuin.validator.AccountValidator;
 
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -43,13 +43,17 @@ public class LoginController implements ActionListener {
             case "login":
                 String username = loginWindow.getUser();
                 String password = loginWindow.getPassword();
-                if(accountValidator.validateUsername(username) && accountValidator.validatePassword(password)){
+//                if(accountValidator.validateUsername(username) && accountValidator.validatePassword(password)){
                     System.out.println(accountManager.login(username, password));
                     Message.show("                Login exitoso!");
                     loginWindow.dispose();
-                }else{
-                    Message.show("Alguno de los campos es incorrecto");
-                }
+
+                    MainWindow mainWindow = new MainWindow();
+                    MainController mainController = new MainController(mainWindow);
+                    mainWindow.addListeners(mainController);
+//                }else{
+//                    Message.show("Alguno de los campos es incorrecto");
+//                } LO COMENTE PARA NO TENER QUE LOGUEARME TOD0 EL TIEMPO VISTE
                 break;
             case "close":
                 loginWindow.setVisible(false);
@@ -57,6 +61,7 @@ public class LoginController implements ActionListener {
                 break;
             case "register":
                 loginWindow.setVisible(false);
+
                 RegisterDialog registerDialog = new RegisterDialog();
                 RegisterController registerController = new RegisterController(registerDialog,this);
                 registerDialog.addListeners(registerController);
