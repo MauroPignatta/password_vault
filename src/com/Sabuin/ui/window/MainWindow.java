@@ -1,12 +1,14 @@
 package com.Sabuin.ui.window;
 
 import com.Sabuin.ui.UIAssets;
+import com.Sabuin.ui.component.ListEx;
 import com.Sabuin.ui.component.UIButton;
 import com.Sabuin.util.TitleBarDragListener;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class MainWindow extends JFrame{
@@ -22,6 +24,7 @@ public class MainWindow extends JFrame{
     private JPanel panel = new JPanel();
 
     private JButton closeButton = new UIButton("close",(WIDTH/2)-50-BORDER_THICKNESS,237, UIAssets.CLOSE_BUTTON_IMG, UIAssets.CLOSE_HOVER_BUTTON_IMG);
+    private JButton listButton = new UIButton("", (WIDTH/2)-50-BORDER_THICKNESS,237, UIAssets.LOGIN_BUTTON_IMG, UIAssets.LOGIN_HOVER_BUTTON_IMG);
 
     public MainWindow() {
         setTitle(TITLE);
@@ -65,11 +68,18 @@ public class MainWindow extends JFrame{
         add(titleBar, BorderLayout.NORTH);
         add(panel, BorderLayout.CENTER);
         panel.add(labelIcon);
+        panel.add(listButton);
         titleBar.add(closeButton);
     }
 
     public void addListeners(ActionListener actionListener){
         closeButton.addActionListener(actionListener);
+
+        listButton.addActionListener(e -> {
+            ListEx ex = new ListEx();
+            ex.setVisible(true);
+        });
+
     }
 
 }
