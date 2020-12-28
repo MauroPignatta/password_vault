@@ -45,6 +45,8 @@ public class LoginController implements ActionListener {
                 String password = loginWindow.getPassword();
                 if(accountValidator.validateUsername(username) && accountValidator.validatePassword(password)){
                     System.out.println(accountManager.login(username, password));
+                    Message.show("                Login exitoso!");
+                    loginWindow.dispose();
                 }else{
                     Message.show("Alguno de los campos es incorrecto");
                 }
