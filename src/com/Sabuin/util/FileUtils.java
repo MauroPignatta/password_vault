@@ -8,6 +8,10 @@ import java.io.IOException;
 
 public class FileUtils {
 
+    public static boolean exists(String fileName){
+        return new File(Config.getConfig().getHomePath() + "\\" + fileName).exists();
+    }
+
     public static File createOrOpenFile(String filename) {
         return createOrOpenFile(null, filename);
     }

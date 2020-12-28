@@ -1,7 +1,7 @@
 package com.Sabuin.ui;
 
 import com.Sabuin.config.Config;
-import com.Sabuin.generator.PasswordGenerator;
+import com.Sabuin.util.PasswordUtils;
 import com.Sabuin.util.ClipboardUtils;
 
 import javax.swing.*;
@@ -47,7 +47,7 @@ public class AppTray {
             MenuItem generatePass = new MenuItem("Generate Password");
             generatePass.addActionListener(a -> {
                     trayIcon.displayMessage("","Copied to Clipboard.",TrayIcon.MessageType.INFO);
-                    ClipboardUtils.copyToClipboard(PasswordGenerator.generatePassword());
+                    ClipboardUtils.copyToClipboard(PasswordUtils.generatePassword());
             });
 
             MenuItem exit = new MenuItem("Exit");

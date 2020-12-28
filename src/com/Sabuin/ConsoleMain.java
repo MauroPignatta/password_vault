@@ -29,6 +29,12 @@ public class ConsoleMain {
 
     public static void main(String[] args) {
 
+        AppLock.init();
+        if(AppLock.isLocked()){
+            System.err.println("PasswordVault is already running.");
+            System.exit(0);
+        }
+
         boolean close = false;
         boolean logged = false;
 
