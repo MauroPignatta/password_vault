@@ -1,14 +1,14 @@
 package com.Sabuin.manager;
 
 import com.Sabuin.config.Config;
-import com.Sabuin.entity.Registry;
 import com.Sabuin.factory.AccountFactory;
 import com.Sabuin.file.BinaryFile;
 import com.Sabuin.log.Log;
 import com.Sabuin.log.LogType;
 import com.Sabuin.util.Base64Utils;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class AccountManager {
 

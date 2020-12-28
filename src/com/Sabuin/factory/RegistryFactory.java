@@ -40,7 +40,7 @@ public class RegistryFactory {
         return returnedRegistry;
     }
 
-    public Registry createRegistry(String json){
+    public Registry fromJson(String json){
         return Config.getConfig().getGson().fromJson(json, Registry.class);
     }
 

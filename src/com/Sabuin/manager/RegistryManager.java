@@ -38,9 +38,8 @@ public class RegistryManager {
         return new ArrayList<>(list);
     }
 
-    private void saveRegistries(){
-        Gson gson = Config.getConfig().getGson();
-        file.write(Base64Utils.encode(gson.toJson(registries.toArray(), Registry[].class)));
+    public int registriesSize(){
+        return registries.size();
     }
 
     public void addRegistry(Registry registry){
@@ -48,9 +47,45 @@ public class RegistryManager {
         saveRegistries();
     }
 
-    public void deleteRegistry(Registry registry){
-        registries.remove(registry);
+    public void editRegistry(int id, Registry newRegistry){
+        if(isOutOfBounds(id)){
+            return;
+        }
+        Registry reg = registries.get(id);
+        reg.setName(newRegistry.getName());
+        reg.setUrl(newRegistry.getUrl());
+        reg.setAccount(newRegistry.getAccount());
+        reg.setDescription(newRegistry.getDescription());
+
         saveRegistries();
     }
 
+    public void deleteRegistry(int id){
+        if(isOutOfBounds(id))
+            return;
+
+        registries.remove(id);
+        saveRegistries();
+    }
+
+    public Registry[] getRegistries(){
+        Registry[] arr = new Registry[registries.size()];
+        return registries.toArray(arr);
+    }
+
+    public Registry getRegistry(int id){
+        if(!isOutOfBounds(id)){
+            return registries.get(id);
+        }
+        return null;
+    }
+
+    public void saveRegistries(){
+        Gson gson = Config.getConfig().getGson();
+        file.write(Base64Utils.encode(gson.toJson(registries.toArray(), Registry[].class)));
+    }
+
+    private boolean isOutOfBounds(int id){
+        return id < 0 || id >= registries.size();
+    }
 }
