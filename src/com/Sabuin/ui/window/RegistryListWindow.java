@@ -20,11 +20,11 @@ public class RegistryListWindow extends JFrame {
     private RegistryManager regManager;
 
     public RegistryListWindow() {
+        regManager = new RegistryManager("Yagom011");
+
         list = new JList();
         model = createModel();
         list.setModel(model);
-
-        regManager = new RegistryManager("Yagom011");
 
         spane = new JScrollPane();
         spane.getViewport().add(list);
