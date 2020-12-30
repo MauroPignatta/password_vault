@@ -2,16 +2,24 @@ package com.Sabuin.ui.window;
 
 import com.Sabuin.entity.Registry;
 import com.Sabuin.manager.RegistryManager;
+import com.Sabuin.ui.UIAssets;
 
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
 public class RegistryListWindow extends JFrame {
 
+    private final static String TITLE = "Password Vault";
+    private final static int WIDTH = 600;
+    private final static int HEIGHT = 600;
+    private static int BORDER_THICKNESS = 5;
+
     private JLabel label;
     private JScrollPane spane;
     private JButton editButton;
+    private JButton addButton;
     private JButton deleteButton;
     private JButton backButton;
     private JList list;
@@ -32,6 +40,7 @@ public class RegistryListWindow extends JFrame {
         editButton = new JButton("Edit");
         deleteButton = new JButton("Delete");
         backButton = new JButton("Back");
+        addButton = new JButton("Add");
 
         initUI();
     }
@@ -39,19 +48,14 @@ public class RegistryListWindow extends JFrame {
     public JList getList() {
         return list;
     }
-
     public DefaultListModel getModel() {
         return model;
     }
-
     public RegistryManager getRegManager() {
         return regManager;
     }
 
     private void initUI() {
-        setUndecorated(true);
-        setLocationRelativeTo(null);
-
         list.addListSelectionListener(e -> {
             if (!e.getValueIsAdjusting()) {
                 Registry registry = (Registry) list.getSelectedValue();
@@ -62,33 +66,39 @@ public class RegistryListWindow extends JFrame {
                 }
             }
         });
-
-        createLayout(spane, label, editButton, deleteButton, backButton);
+        setTitle(TITLE);
+        setSize(WIDTH, HEIGHT);
+        setLocationRelativeTo(null);
+        setUndecorated(true);
+        createPanel(new JPanel());
+        setVisible(true);
+    }
+    private void createPanel(JPanel panel){
+        add(panel);
+        setBackground(UIAssets.PANEL_BACKGROUND);
+        panel.setBackground(UIAssets.PANEL_BACKGROUND);
+        panel.setLayout(null);
+        panel.setBorder(new LineBorder(UIAssets.PANEL_BACKGROUND_BORDER, BORDER_THICKNESS));
+        editElements();
+        addElements(panel);
     }
 
-    private void createLayout(JComponent... arg) {
-        Container pane = getContentPane();
-        GroupLayout gl = new GroupLayout(pane);
-        pane.setLayout(gl);
+    private void editElements() {
+        spane.setBounds(BORDER_THICKNESS*3, BORDER_THICKNESS*3, WIDTH-(BORDER_THICKNESS*6),100);
+        label.setBounds((WIDTH/2)-50-BORDER_THICKNESS, 130,200,50);
+        addButton.setBounds(95,180,100,25);
+        editButton.setBounds(200,180,100,25);
+        deleteButton.setBounds(305,180,100,25);
+        backButton.setBounds(410,180,100,25);
+    }
 
-        gl.setAutoCreateContainerGaps(true);
-        gl.setAutoCreateGaps(true);
-
-        gl.setHorizontalGroup(gl.createParallelGroup()
-                .addComponent(arg[0])
-                .addComponent(arg[1])
-                .addComponent(arg[2])
-                .addComponent(arg[3])
-                .addComponent(arg[4])
-        );
-        gl.setVerticalGroup(gl.createSequentialGroup()
-                .addComponent(arg[0])
-                .addComponent(arg[1])
-                .addComponent(arg[2])
-                .addComponent(arg[3])
-                .addComponent(arg[4])
-        );
-        pack();
+    private void addElements(JPanel panel){
+        panel.add(spane);
+        panel.add(label);
+        panel.add(addButton);
+        panel.add(editButton);
+        panel.add(deleteButton);
+        panel.add(backButton);
     }
 
     private Registry[] getRegistries(){
@@ -112,6 +122,8 @@ public class RegistryListWindow extends JFrame {
     }
 
     public void addListeners(ActionListener actionListener){
+        addButton.setActionCommand("add");
+        addButton.addActionListener(actionListener);
         editButton.setActionCommand("edit");
         editButton.addActionListener(actionListener);
         deleteButton.setActionCommand("delete");

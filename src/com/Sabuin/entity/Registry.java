@@ -57,9 +57,9 @@ public class Registry {
 
     @Override
     public String toString() {
-        return  "Name=" + name +
-                "\nUrl=" + url +
-                "\nUsername=" + account.getUsername() +
-                "\nDescription=" + description;
+        return  "Name= " + name +
+                " Url= " + url +
+                " Username= " + account.getUsername() +
+                " Description= " + description;
     }
 }
